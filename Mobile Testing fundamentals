@@ -1,0 +1,39 @@
+📱 Project 1: Manual Testing – Urban Routes App
+In this project, I manually tested the Urban Routes mobile web app, which calculates routes, travel time, and costs based on various transportation modes (walking, car, taxi, scooter, etc.).
+
+🔍 Key Responsibilities:
+Reviewed and executed predefined test cases for core app functionality (e.g., route creation, transport selection).
+
+Identified and documented bugs by comparing expected vs. actual results.
+
+Reported issues in JIRA using detailed bug reports (including steps to reproduce, system info, and expected/actual results).
+
+Tested across different modes like Optimal, Fastest, and Custom route calculations.
+
+📄 Included in this folder:
+test-cases.md: Executed manual test cases
+
+bug-reports.md: Sample JIRA-style bug reports
+
+⚙️ Tools used :
+
+Urban Routes App (Test Environment) – The web app under test
+
+JIRA – For bug tracking and detailed issue reporting
+
+Test Case Document (Spreadsheet or Markdown) – To execute and track test cases
+
+✅ What I Did
+Manually tested the Urban Routes app using given test cases
+
+Reported bugs in JIRA with clear steps and details
+
+Simulated how a real user would interact with the app
+
+🎓 What I Learned
+How to do manual testing step by step
+
+How to write and submit bug reports in JIRA
+
+How to think like a user when testing features
+
