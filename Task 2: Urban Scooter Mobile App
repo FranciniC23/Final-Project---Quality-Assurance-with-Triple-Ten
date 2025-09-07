@@ -1,0 +1,21 @@
+📱 Urban Scooter Mobile App – QA Task 2
+
+📋 Overview
+This repository documents my QA work testing the Urban Scooter mobile application. The focus was on validating key app features, ensuring layout and design accuracy, and identifying bugs. Results were recorded in Google Sheets, and all issues were reported in JIRA.
+
+🛠️ What I Did
+🔹 Prepared the environment using Android Studio and the mobile emulator, installed the APK, and configured the app to connect with the backend API
+🔹 Designed test cases for highlighted features, including layout and design validations - Figma Layout - https://www.figma.com/design/Ql81P6XKXadabhs5Hi6BxP/mobile?node-id=0-1&p=f&t=zFbUjAwYpNAAXZMr-0
+🔹 Executed test cases on the mobile app, simulating real user scenarios and checking feature functionality
+🔹 Recorded all bugs in JIRA and linked them in the test case documentation
+🔹 Ensured smooth integration between the web app and mobile app for orders
+
+⚙️ Tools & Skills Used
+📌 Android Studio: Emulator setup and mobile testing
+📌 JIRA: Bug reporting and tracking
+📌 Google Sheets: Test case documentation (View Task 2 Mobile Test Cases) ; https://docs.google.com/spreadsheets/d/1pI8lV5GqNTc4MiCMujcGJsgaLP3Hnys0k7qp8tCmYjk/edit?gid=642427710#gid=642427710
+📌 QA Skills: Test planning, positive/negative test case design, functional testing, bug reporting
+
+🐞 Bug Reports
+All identified bugs are documented here: Google Sheets – JIRA Bug Links 
+https://docs.google.com/spreadsheets/d/1pI8lV5GqNTc4MiCMujcGJsgaLP3Hnys0k7qp8tCmYjk/edit?gid=642427710#gid=642427710
