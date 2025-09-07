@@ -1,0 +1,430 @@
+
+Courier - Creating a courier
+
+POST
+/api/v1/courier
+Parameter
+
+Field	Type	Description
+login	string	
+The courier's login is written in the '''login''' column of the Couriers spreadsheet
+
+password	string	
+The courier's password, the hash of the value is written in the '''passwordHash''' column of the Couriers spreadsheet
+
+firstName	string	
+The courier's name is written in the firstName column of the Couriers spreadsheet
+
+Request
+{
+    "login": "ninja",
+    "password": "1234",
+    "firstName": "saske"
+}
+Account has been created successfully
+HTTP/1.1 201 Created
+{
+    ok: true
+}
+Request without login or password:
+Request with a duplicate login:
+HTTP/1.1 400 Bad Request
+{
+  "message": "Not enough data to create an account"
+}
+Courier - Removing a courier
+
+DELETE
+/api/v1/courier/:id
+Parameter
+
+Field	Type	Description
+id	string	
+The courier's number is stored in the '''id''' column of the Couriers spreadsheet
+
+Request
+{
+    "id": "3"
+}
+The courier has been removed successfully
+HTTP/1.1 200 OK
+{
+    ok: true
+}
+Request without id:
+Request with a non-existent ID:
+HTTP/1.1 400 Bad Request
+{
+  "message":  "Not enough data to remove the courier"
+}
+Courier - The courier's login in the system
+
+POST
+/api/v1/courier/login
+Parameter
+
+Field	Type	Description
+login	string	
+The courier's login is stored in the '''login''' column of the Couriers spreadsheet
+
+password	string	
+The courier's password, the hash of the value is stored in the '''passwordHash''' column of the Couriers spreadsheet
+
+Request
+{
+    "login": "ninja",
+    "password": "1234"
+}
+Successful login
+HTTP/1.1 200
+{
+    id: 12345
+}
+Request without login or password:
+Request with a non-existent login-password pair:
+HTTP/1.1 400 Bad Request
+{
+  "message":  "Not enough data to log in"
+}
+Couriers
+
+Couriers - Get the number of the courier's orders
+
+GET
+/api/v1/courier/:id/ordersCount
+Parameter
+
+Field	Type	Description
+id	number	
+Courier's number { "id": 123456 }
+
+Number of the courier's orders "1"
+/v1/courier/1/ordersCount
+Response success
+HTTP/1.1 200
+{
+  "id": "123456",
+  "ordersCount": "100500"
+}
+Request without a number:
+Request with a non-existent number:
+HTTP/1.1 400 Bad Request
+{
+  "message":  "Not enough data for search"
+}
+Orders
+
+Orders - Accept the order
+
+PUT
+/api/v1/orders/accept/:id
+Parameter
+
+Field	Type	Description
+id	number	
+The number of the order is stored in the '''id''' column of the Orders spreadsheet
+
+Courier	number	
+'s ID courierId is stored in the '''id''' column of the Couriers spreadsheet
+
+Request
+/v1/orders/accept/1?courierId=213
+Successful response
+HTTP/1.1 200
+{
+    ok: true
+}
+Request without a number:
+Request with a non-existent number:
+Request with a non-existent courier's number:
+The order was already processed:
+No courier's ID or order's ID:
+HTTP/1.1 400 Bad Request
+{
+  "message":  "Not enough data for search"
+}
+Orders - Cancel the order
+
+PUT
+/api/v1/orders/cancel
+Parameter
+
+Field	Type	Description
+track	string	
+The number of the order is stored in the '''track''' column of the Orders spreadsheet
+
+Request
+{
+    "track": 123456
+}
+Successful response
+HTTP/1.1 200
+{
+    ok: true
+}
+Request without a number:
+Request with a non-existent number:
+This order is already being processed:
+HTTP/1.1 400 Bad Request
+{
+  "message":  "Not enough data for search"
+}
+Orders - Complete the order
+
+PUT
+/api/v1/orders/finish/:id
+Parameter
+
+Field	Type	Description
+id	number	
+The number of the order is stored in the '''id''' column of the Orders spreadsheet
+
+Request
+{
+    "id": 123
+}
+Successful response
+HTTP/1.1 200
+{
+    ok: true
+}
+Request without a number:
+Request with a non-existent number:
+Request with a non-existent courier's number:
+Order can't be completed:
+HTTP/1.1 400 Bad Request
+{
+  "message":  "Not enough data for search"
+}
+Orders - Creating an order
+
+POST
+/api/v1/orders
+Parameter
+
+Field	Type	Description
+firstName	string	
+The customer's name is written in the '''firstName''' column of the Orders spreadsheet
+
+lastName	string	
+The customer's last name is written in the '''lastName''' column of the Orders spreadsheet
+
+address	string	
+The customer's address is written in the '''adress''' column in the Orders spreadsheet
+
+metroStation	string	
+The nearest subway station to the customer is written in the '''subwayStation''' column of the Orders spreadsheet
+
+phone	string	
+The customer's phone is written in the '''phone''' column of the Orders spreadsheet
+
+rentTime	number	
+The number of rental days is written in the '''rentTime''' column of the Orders spreadsheet
+
+deliveryDate	string	
+Delivery date is written in the '''deliveryDate''' column of the Orders spreadsheet
+
+comment	string	
+A customer's comment is written in the '''comment''' column of the Orders spreadsheet
+
+color optional	string[]	
+Preferred colors are written in the '''color''' column of the Orders spreadsheet
+
+Request
+{
+    "firstName": "Naruto",
+    "lastName": "Uchiha",
+    "address": "Konoha, 142 apt.",
+    "metroStation": 4,
+    "phone": "+7 800 355 35 35",
+    "rentTime": 5,
+    "deliveryDate": "2020-06-06",
+    "comment": "Saske, come back to Konoha",
+    "color": [
+        "BLACK"
+    ]
+}
+The order has been successfully created
+HTTP/1.1 201 Created {
+    track: 124124
+}
+Orders - Get an order by its number
+
+GET
+/api/v1/orders/track
+Parameter
+
+Field	Type	Description
+t	number	
+Tracking number of the order
+
+Request
+/v1/orders/track?t=123456
+Response success
+    HTTP/1.1 200
+    {
+         "order": {
+             "id": 2,
+             "firstName": "Naruto",
+             "lastName": "Uzumaki",
+             "address": "Kanoha, 142 apt.",
+             "metroStation": "1",
+             "phone": "+7 800 355 35 35",
+             "rentTime": 5,
+             "deliveryDate": "2020-06-06T00:00:00.000Z",
+             "track": 521394,
+             "status": 1,
+             "color": [
+                 "BLACK"
+             ],
+             "comment": "Saske, come back to Kanoha",
+             "cancelled": false,
+             "finished": false,
+             "inDelivery": false,
+             "courierFirstName": "Kaneki"
+             "createdAt": "2020-06-08T14:40:28.219Z",
+             "updatedAt": "2020-06-08T14:40:28.219Z"
+  }
+}
+Request without a number:
+Request with a non-existent number:
+HTTP/1.1 400 Bad Request
+{
+  "message":  "Not enough data for search"
+}
+Orders - Getting a list of orders.
+
+GET
+/api/v1/orders
+Parameter
+
+Field	Type	Description
+courierId optional	number	
+Courier's ID. If specified, returns all the active and completed orders of this courier
+
+nearestStation optional	string	
+Subways stations filter . Sent as JSON, for example: '''{ nearestStation: ["1", "2"] }'''. When sending, the final output is filtered by the specified subway stations
+
+limit optional	number	
+Number of orders per page. '''Maximum: 30'''
+
+Default value: 30
+
+page optional	number	
+Current orders display page.
+
+Default value: 0
+
+All active/completed courier orders
+All active/completed courier's orders at stations "First Avenue"(1) or "Broadway Junction"(2)
+10 orders available for pickup by courier
+10 orders available for pickup by courier near the "York Street" subway station(110)
+/v1/orders?courierId=1
+Successful request without courierId
+HTTP/1.1 200
+ {
+    "orders": [
+        {
+            "id": 4,
+            "courierId": null,
+            "firstName": "John",
+            "lastName": "Doe",
+            "address": "1300 1st St",
+            "metroStation": "2",
+            "phone": "423424234432",
+            "rentTime": 4,
+            "deliveryDate": "2020-06-21T21:00:00.000Z",
+            "track": 400443,
+            "color": [
+                "BLACK",
+                "GREY"
+            ],
+            "comment": "Comment from John",
+            "createdAt": "2020-06-21T13:21:30.067Z",
+            "updatedAt": "2020-06-21T13:21:30.067Z",
+            "status": 0
+        },
+        {
+            "id": 5,
+            "courierId": null,
+            "firstName": "Jane",
+            "lastName": "Doe",
+            "address": "East 2nd Street, 601",
+            "metroStation": "4",
+            "phone": "1441412414",
+            "rentTime": 4,
+            "deliveryDate": "2020-06-08T21:00:00.000Z",
+            "track": 189237,
+            "color": [
+                "BLACK",
+                "GREY"
+            ],
+            "comment": "Comment from Jane",
+            "createdAt": "2020-06-21T13:23:09.404Z",
+            "updatedAt": "2020-06-21T13:23:09.404Z",
+            "status": 0
+        }
+    ],
+    "pageInfo": {
+        "page": 0,
+        "total": 3,
+        "limit": 2
+    },
+    "availableStations": [
+        {
+            "name": "5th Street",
+            "number": "2",
+            "color": "#0173BD"
+        },
+        {
+            "name": "7th Street/Metro Center",
+            "number": "3",
+            "color": "#0173BD"
+        },
+        {
+            "name": "7th Street/Metro Center",
+            "number": "4",
+            "color": "#EC161F"
+        }
+    ]
+ }
+Request with a non-existent ID:
+HTTP/1.1 404 Not Found
+{
+  "message": "Courier with ID {courierId} wasn't found"
+}
+Utils
+
+Utils - Ping server
+
+GET
+/api/v1/ping
+Response success
+HTTP/1.1 200 Ok
+pong;
+Utils - Search for subway stations by name
+
+GET
+/api/v1/stations/search
+Parameter
+
+Field	Type	Description
+s	string	
+Station search string
+
+Search for subway "Del"
+/v1/stations/search?s=Del
+Successful search
+   HTTP/1.1 200 OK
+  [
+    {
+       "number": "25",
+       "name": "Del Amo",
+       "color": "#0173BD"
+    },
+    {
+       "number": "26",
+       "name": "Del Mar",
+       "color": "#A05DA5"
+   }
+]
