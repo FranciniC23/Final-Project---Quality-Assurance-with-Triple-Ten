@@ -1,0 +1,21 @@
+⚙️ Urban Scooter Backend – QA Task 3
+
+📋 Overview
+This repository documents QA testing for the backend of the Urban Scooter application. The focus was on verifying API functionality for adding and deleting couriers, ensuring requirements were met, and identifying bugs. Test results were recorded in Google Sheets and all issues reported in JIRA.
+ 
+🛠️ What I Did
+🔹 Examined backend requirements and API documentation
+🔹 Designed API test cases for Add and Delete courier functions
+🔹 Executed API tests using Postman, validating responses and expected behavior
+🔹 Recorded all test results and logged bugs in JIRA
+🔹 Documented results in the "Task 3: API Test Cases" tab in Google Sheets 
+
+⚙️ Tools & Skills Used
+📌 Postman: API testing and request validation
+📌 JIRA: Bug reporting and tracking - https://docs.google.com/spreadsheets/d/1pI8lV5GqNTc4MiCMujcGJsgaLP3Hnys0k7qp8tCmYjk/edit?gid=46614568#gid=46614568
+📌 Google Sheets: Test case documentation (View Task 3 API Test Cases)
+📌 QA Skills: API test planning, functional testing, bug reporting, backend verification
+
+🐞 Bug Reports
+All identified bugs are documented here: Google Sheets – JIRA Bug Links
+https://docs.google.com/spreadsheets/d/1pI8lV5GqNTc4MiCMujcGJsgaLP3Hnys0k7qp8tCmYjk/edit?gid=46614568#gid=46614568
